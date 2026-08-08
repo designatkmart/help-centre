@@ -2,6 +2,11 @@
 
 Interactive, no-backend prototype of the Kmart Help Centre redesign (Figma Design v3).
 
+**Live demo:** https://designatkmart.github.io/help-centre/
+**Repo:** https://github.com/designatkmart/help-centre
+
+Deployed automatically to GitHub Pages via [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) on every push to `main`.
+
 ## Run
 
 ```bash
