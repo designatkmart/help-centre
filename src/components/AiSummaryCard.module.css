@@ -16,7 +16,8 @@
 
 .header h2 {
   margin: 0;
-  font-size: var(--font-size-title-medium);
+  /* Same size as the answer body (--font-size-body-medium), just bolded. */
+  font-size: var(--font-size-body-medium);
   font-weight: 700;
   line-height: 1.2;
   color: var(--surface-text-primary);

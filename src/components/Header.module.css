@@ -1,5 +1,42 @@
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   background: var(--color-white);
+  transition: transform 220ms ease;
+  will-change: transform;
+}
+
+/* Collapsed = scrolling down away from the top. The whole header slides up by the
+   height of the hidden row (--collapse-shift, measured in Header.tsx) so its bottom
+   edge lifts and no empty band is left; the persistent row is pushed back down by
+   the same amount so the logo/search chrome stays visually pinned to the top. */
+.header[data-collapsed="true"] {
+  transform: translateY(calc(-1 * var(--collapse-shift, 0px)));
+}
+
+.persistent {
+  position: relative;
+  z-index: 2;
+  background: var(--color-white);
+  transition: transform 220ms ease;
+  will-change: transform;
+}
+
+.header[data-collapsed="true"] .persistent {
+  transform: translateY(var(--collapse-shift, 0px));
+}
+
+/* Breakpoint hooks; base show/hide behaviour comes from .persistent. */
+.compactPersistent,
+.desktopPersistent {
+  display: block;
+}
+
+/* Sits behind the persistent row so it is fully occluded once collapsed. */
+.collapsible {
+  position: relative;
+  z-index: 1;
 }
 
 /* ---------- shared ---------- */

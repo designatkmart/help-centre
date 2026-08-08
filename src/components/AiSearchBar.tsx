@@ -3,6 +3,7 @@ import searchIcon from "../assets/icons/search.svg";
 import sparkleA from "../assets/icons/sparkle-a.svg";
 import sparkleB from "../assets/icons/sparkle-b.svg";
 import closeIcon from "../assets/icons/close.svg";
+import micIcon from "../assets/icons/mic.svg";
 import styles from "./AiSearchBar.module.css";
 
 type AiSearchBarProps = {
@@ -12,6 +13,7 @@ type AiSearchBarProps = {
   onClear: () => void;
   /** Once a thread is open the hero sits in its clean default state — no clear icon. */
   hasThread?: boolean;
+  onVoice?: () => void;
   inputRef?: RefObject<HTMLInputElement | null>;
 };
 
@@ -22,6 +24,7 @@ export function AiSearchBar({
   onSubmit,
   onClear,
   hasThread,
+  onVoice,
   inputRef,
 }: AiSearchBarProps) {
   const showClear = Boolean(value) && !hasThread;
@@ -63,6 +66,10 @@ export function AiSearchBar({
         tabIndex={showClear ? undefined : -1}
       >
         <img src={closeIcon} alt="" className={styles.clearGlyph} width={14} height={14} />
+      </button>
+      {/* Trailing voice affordance, held past the clear slot so the two never trade places. */}
+      <button type="button" className={styles.voice} onClick={onVoice} aria-label="Voice search">
+        <img src={micIcon} alt="" className={styles.voiceGlyph} width={18} height={18} />
       </button>
       <button type="submit" className="sr-only" disabled={!value.trim()}>
         Search

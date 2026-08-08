@@ -9,10 +9,16 @@
   background: var(--surface-container);
   border-radius: var(--radius-pill);
   box-shadow: 0 1px 2px rgba(19, 20, 22, 0.06);
-  transition: box-shadow 160ms ease, transform 160ms ease;
+  /* Colour only: the field never scales or resizes when it is focused. */
+  transition: box-shadow 160ms ease;
 }
 
-.form:focus-within {
+.form:hover {
+  box-shadow: 0 1px 2px rgba(19, 20, 22, 0.06), 0 0 0 1px var(--surface-outline);
+}
+
+.form:focus-within,
+.form:hover:focus-within {
   box-shadow: 0 0 0 2px var(--brand-joy-blue);
 }
 
@@ -57,8 +63,9 @@
   outline: none;
   background: transparent;
   color: var(--surface-text-primary);
-  font-size: var(--font-size-body-medium);
-  line-height: var(--line-height-body-medium);
+  /* 16px keeps mobile Safari from zooming the page when the field takes focus. */
+  font-size: var(--font-size-body-large);
+  line-height: var(--line-height-body-large);
 }
 
 .input::placeholder {
@@ -78,7 +85,7 @@
   height: var(--size-icon-md);
   flex-shrink: 0;
   border-radius: 50%;
-  transition: background 160ms ease, transform 160ms ease;
+  transition: background 160ms ease, box-shadow 160ms ease;
 }
 
 .clearGlyph {
@@ -92,10 +99,36 @@
 
 .clear:active {
   background: var(--brand-joy-blue-bg);
-  transform: scale(0.92);
+  box-shadow: inset 0 0 0 1px var(--brand-joy-blue);
 }
 
 .clearIdle {
   visibility: hidden;
   pointer-events: none;
+}
+
+/* Trailing voice affordance. Same 24x24 frame as the clear control so the two
+   sit on one baseline, and it stays put when the clear slot empties. */
+.voice {
+  display: grid;
+  place-items: center;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+  flex-shrink: 0;
+  border-radius: 50%;
+  transition: background 160ms ease, box-shadow 160ms ease;
+}
+
+.voiceGlyph {
+  width: 18px;
+  height: 18px;
+}
+
+.voice:hover {
+  background: var(--brand-joy-blue-bg);
+}
+
+.voice:active {
+  background: var(--brand-joy-blue-bg);
+  box-shadow: inset 0 0 0 1px var(--brand-joy-blue);
 }

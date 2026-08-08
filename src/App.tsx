@@ -107,6 +107,11 @@ export default function App() {
 
   const openJoy = useCallback(() => setJoyOpen(true), []);
 
+  /** The mic is presented as a real control; dictation itself is not built yet. */
+  const onVoice = useCallback(() => {
+    showToast("Voice search is coming soon");
+  }, [showToast]);
+
   const onTopic = useCallback(
     (topic: HelpTopic) => {
       showToast(`${topic.label} — topic pages are stubbed in this prototype`);
@@ -133,6 +138,7 @@ export default function App() {
               onSubmit={startNewSearch}
               onClear={() => setQuery("")}
               hasThread={hasThread}
+              onVoice={onVoice}
             />
 
             {hasThread ? null : (
@@ -154,7 +160,7 @@ export default function App() {
                 aria-live="polite"
                 aria-relevant="additions"
               >
-                {turns.map((turn, index) => (
+                {turns.map((turn) => (
                   <article className={styles.turn} key={turn.id}>
                     <p className={styles.question}>{turn.question}</p>
 
@@ -174,14 +180,14 @@ export default function App() {
                           summary={turn.summary}
                           onChatWithJoy={openJoy}
                           followUp={turn.followUp}
-                          showJoyCta={index === 1}
+                          showJoyCta
                         />
                       </div>
                       {turn.loading ? (
                         <div className={styles.answerLoading}>
                           <AiSummarySkeleton
                             shape={turn.summary.paragraphs}
-                            showJoyCta={index === 1}
+                            showJoyCta
                           />
                         </div>
                       ) : null}
@@ -194,6 +200,7 @@ export default function App() {
                   onChange={setFollowUpQuery}
                   onSubmit={askFollowUp}
                   busy={loading}
+                  onVoice={onVoice}
                 />
               </section>
             ) : null}

@@ -77,8 +77,9 @@
   --surface-skeleton: #e6e9ec;
   --surface-skeleton-highlight: #f4f6f8;
 
-  /* Search / suggestion chips share this so they stay edge-aligned */
-  --search-max-width: 640px;
+  /* Search and suggestion chips share the answer column, so the hero field, the
+     pills, the summary card and the follow-up field all sit on one edge. */
+  --search-max-width: var(--answer-column);
 
   /* Grid Tile — 1 Kmart Library / Grid Tile (Image Ratio 1:1) */
   --grid-tile-scrim: rgba(19, 20, 22, 0.7);

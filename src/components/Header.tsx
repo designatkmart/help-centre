@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import kmartLogo from "../assets/logo/kmart-logo.svg";
 import dehazeIcon from "../assets/icons/menu-dehaze.svg";
 import searchGlyph from "../assets/icons/search.svg";
@@ -124,6 +124,11 @@ function AiSearchIcon() {
 
 export function Header() {
   const navRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const mobileCollapsibleRef = useRef<HTMLDivElement>(null);
+  const desktopCollapsibleRef = useRef<HTMLDivElement>(null);
+  const shiftRef = useRef(0);
+  const [collapsed, setCollapsed] = useState(false);
 
   const scrollNav = useCallback(() => {
     const nav = navRef.current;
@@ -132,12 +137,73 @@ export function Header() {
     nav.scrollBy({ left: 240, behavior: reduceMotion ? "auto" : "smooth" });
   }, []);
 
+  /* The secondary row (localisation on mobile, nav + localisation on desktop) is
+     the only part that hides. We measure whichever collapsible row is visible for
+     the current breakpoint and expose it as `--collapse-shift`; the header slides
+     up by that amount while the persistent row is pushed back down by the same
+     amount, so the visible chrome never moves and no layout height changes. */
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const measure = () => {
+      const mobile = mobileCollapsibleRef.current;
+      const desktop = desktopCollapsibleRef.current;
+      const mobileH = mobile && mobile.offsetParent !== null ? mobile.offsetHeight : 0;
+      const desktopH = desktop && desktop.offsetParent !== null ? desktop.offsetHeight : 0;
+      const shift = Math.max(mobileH, desktopH);
+      shiftRef.current = shift;
+      header.style.setProperty("--collapse-shift", `${shift}px`);
+    };
+
+    measure();
+
+    const observer = new ResizeObserver(measure);
+    if (mobileCollapsibleRef.current) observer.observe(mobileCollapsibleRef.current);
+    if (desktopCollapsibleRef.current) observer.observe(desktopCollapsibleRef.current);
+    window.addEventListener("resize", measure);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+
+  /* Collapse when scrolling down past the secondary row, reveal on any upward
+     scroll, and force the full header open near the top of the page. */
+  useEffect(() => {
+    let last = window.scrollY;
+    let ticking = false;
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const topZone = shiftRef.current + 8;
+        if (y <= topZone) {
+          setCollapsed(false);
+        } else if (y > last + 4) {
+          setCollapsed(true);
+        } else if (y < last - 4) {
+          setCollapsed(false);
+        }
+        last = y;
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className={styles.header}>
+    <header ref={headerRef} className={styles.header} data-collapsed={collapsed}>
       {/* Mobile / tablet — Header (Mobile) - Vertex (434:7226) */}
       <div className={styles.compact}>
-        {/* 434:7227 navigation-and-utility */}
-        <div className={styles.compactNavRow}>
+        <div className={`${styles.persistent} ${styles.compactPersistent}`}>
+          {/* 434:7227 navigation-and-utility */}
+          <div className={styles.compactNavRow}>
           <button type="button" className={styles.iconButton} aria-label="Menu">
             <Icon src={dehazeIcon} w={18} h={14} />
           </button>
@@ -164,8 +230,13 @@ export function Header() {
           <AskJoyButton className={styles.askJoyCompact} />
         </div>
 
+        </div>
+
         {/* 434:7245 localisation */}
-        <div className={styles.compactLocalisationRow}>
+        <div
+          className={`${styles.collapsible} ${styles.compactLocalisationRow}`}
+          ref={mobileCollapsibleRef}
+        >
           <Localisation className={styles.localisationCompact} />
         </div>
       </div>
@@ -173,6 +244,7 @@ export function Header() {
       {/* Desktop — Header (Desktop) - Default (405:18613) */}
       <div className={styles.desktop}>
         <div className={styles.desktopInner}>
+          <div className={`${styles.persistent} ${styles.desktopPersistent}`}>
           <div className={styles.searchRow}>
             <KmartLogo className={styles.logoDesktop} />
 
@@ -193,8 +265,9 @@ export function Header() {
             <AskJoyButton />
             <UtilityIcons />
           </div>
+          </div>
 
-          <div className={styles.navRow}>
+          <div className={`${styles.collapsible} ${styles.navRow}`} ref={desktopCollapsibleRef}>
             <div className={styles.navScrollArea}>
               <nav className={styles.navList} aria-label="Shop categories" ref={navRef}>
                 {NAV_ITEMS.map(({ label, tone }) => (
