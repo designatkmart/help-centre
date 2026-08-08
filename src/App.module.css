@@ -68,15 +68,43 @@
 }
 
 .question {
-  margin: 0;
   width: 100%;
-  max-width: 720px;
+  max-width: var(--answer-column);
+  margin: 0;
   padding: 0 4px;
+  color: var(--color-dark-blue-100);
   font-size: var(--font-size-body-medium);
   line-height: var(--line-height-body-medium);
   font-weight: 700;
-  color: var(--color-dark-blue-100);
-  text-align: left;
+}
+
+/* Reserves the answer's final height for the whole turn, so the placeholder and
+   the answer are the same box and nothing below them moves on reveal. */
+.answerSlot {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: var(--answer-slot-min);
+}
+
+.answer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  transition: opacity 220ms ease;
+}
+
+.answerPending {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.answerLoading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .content {

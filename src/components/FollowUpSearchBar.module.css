@@ -1,0 +1,65 @@
+/* Sized to the answer column and lighter than the hero search — an outline and a
+   shorter box instead of the hero's elevation — so it reads as part of the thread. */
+.form {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: var(--answer-column);
+  min-height: 44px;
+  padding: 4px 4px 4px var(--space-lg);
+  background: var(--surface-container);
+  border: 1px solid var(--surface-outline);
+  border-radius: var(--radius-pill);
+  /* Colour-only transitions: the border width never changes, so focus costs no
+     reflow. */
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.form:focus-within {
+  border-color: var(--brand-joy-blue);
+  box-shadow: 0 0 0 1px var(--brand-joy-blue);
+}
+
+.glyph {
+  flex: none;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--surface-text-primary);
+  font-size: var(--font-size-body-medium);
+  line-height: var(--line-height-body-medium);
+}
+
+.input::placeholder {
+  color: var(--surface-text-secondary);
+}
+
+.send {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
+  border-radius: 50%;
+  background: var(--brand-joy-blue-bg);
+  transition: background 160ms ease, transform 160ms ease, opacity 160ms ease;
+}
+
+.send:hover:not(:disabled) {
+  background: var(--brand-joy-blue);
+}
+
+.send:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.send:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

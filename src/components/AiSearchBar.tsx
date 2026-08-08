@@ -1,4 +1,4 @@
-import type { FormEvent } from "react";
+import type { FormEvent, RefObject } from "react";
 import searchIcon from "../assets/icons/search.svg";
 import sparkleA from "../assets/icons/sparkle-a.svg";
 import sparkleB from "../assets/icons/sparkle-b.svg";
@@ -10,38 +10,33 @@ type AiSearchBarProps = {
   onChange: (value: string) => void;
   onSubmit: (value: string) => void;
   onClear: () => void;
-  loading?: boolean;
-  /** Switches the bar into follow-up mode once the thread has started. */
-  conversationStarted?: boolean;
+  /** Once a thread is open the hero sits in its clean default state — no clear icon. */
+  hasThread?: boolean;
+  inputRef?: RefObject<HTMLInputElement | null>;
 };
 
+/** Hero search. Always presented as a fresh field: submitting starts a new thread. */
 export function AiSearchBar({
   value,
   onChange,
   onSubmit,
   onClear,
-  loading,
-  conversationStarted,
+  hasThread,
+  inputRef,
 }: AiSearchBarProps) {
-  const label = conversationStarted ? "Ask a follow-up question" : "Ask anything";
-  const showClear = Boolean(value) || Boolean(conversationStarted);
+  const showClear = Boolean(value) && !hasThread;
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
     const trimmed = value.trim();
-    if (!trimmed || loading) return;
+    if (!trimmed) return;
     onSubmit(trimmed);
   }
 
   return (
-    <form
-      className={styles.form}
-      onSubmit={handleSubmit}
-      role="search"
-      aria-busy={loading || undefined}
-    >
+    <form className={styles.form} onSubmit={handleSubmit} role="search">
       <label className="sr-only" htmlFor="ai-search">
-        {label}
+        Search help topics
       </label>
       <div className={styles.iconStack} aria-hidden>
         <img src={searchIcon} alt="" className={styles.searchGlyph} width={18} height={18} />
@@ -50,28 +45,26 @@ export function AiSearchBar({
       </div>
       <input
         id="ai-search"
+        ref={inputRef}
         className={styles.input}
         type="search"
         value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder={label}
+        onChange={(event) => onChange(event.target.value)}
+        placeholder="Ask anything"
         autoComplete="off"
         enterKeyHint="search"
-        disabled={loading}
-        aria-disabled={loading || undefined}
       />
-      {loading ? <span className={styles.spinner} aria-hidden /> : null}
-      {showClear ? (
-        <button
-          type="button"
-          className={styles.clear}
-          onClick={onClear}
-          aria-label={conversationStarted ? "Clear conversation" : "Clear search"}
-        >
-          <img src={closeIcon} alt="" className={styles.clearGlyph} width={14} height={14} />
-        </button>
-      ) : null}
-      <button type="submit" className="sr-only" disabled={loading || !value.trim()}>
+      {/* Slot stays in the layout when hidden so the field never resizes (CLS). */}
+      <button
+        type="button"
+        className={showClear ? styles.clear : `${styles.clear} ${styles.clearIdle}`}
+        onClick={onClear}
+        aria-label="Clear search"
+        tabIndex={showClear ? undefined : -1}
+      >
+        <img src={closeIcon} alt="" className={styles.clearGlyph} width={14} height={14} />
+      </button>
+      <button type="submit" className="sr-only" disabled={!value.trim()}>
         Search
       </button>
     </form>

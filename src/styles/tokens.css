@@ -124,3 +124,10 @@
 :root {
   --content-card-media-plate: #ddecfd;
 }
+
+/* AI answer thread — question, answer card and follow-up field share a column. */
+:root {
+  --answer-column: 720px;
+  /* Floor for the space reserved for an answer while it loads. */
+  --answer-slot-min: 240px;
+}

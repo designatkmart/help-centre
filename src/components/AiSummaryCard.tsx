@@ -10,9 +10,16 @@ type AiSummaryCardProps = {
   onChatWithJoy: () => void;
   /** Answers after the first one are marked so the thread reads as Q → A. */
   followUp?: boolean;
+  /** Only the first follow-up answer escalates to Joy — not the initial answer, not later turns. */
+  showJoyCta?: boolean;
 };
 
-export function AiSummaryCard({ summary, onChatWithJoy, followUp }: AiSummaryCardProps) {
+export function AiSummaryCard({
+  summary,
+  onChatWithJoy,
+  followUp,
+  showJoyCta = false,
+}: AiSummaryCardProps) {
   const [feedback, setFeedback] = useState<"up" | "down" | null>(null);
 
   return (
@@ -29,10 +36,12 @@ export function AiSummaryCard({ summary, onChatWithJoy, followUp }: AiSummaryCar
         ))}
       </div>
 
-      <button type="button" className={styles.joyCta} onClick={onChatWithJoy}>
-        <img src={chipSparkle} alt="" width={10} height={10} />
-        <span>Need more help? Chat with Joy</span>
-      </button>
+      {showJoyCta ? (
+        <button type="button" className={styles.joyCta} onClick={onChatWithJoy}>
+          <img src={chipSparkle} alt="" width={10} height={10} />
+          <span>Need more help? Chat with Joy</span>
+        </button>
+      ) : null}
 
       <div className={styles.feedback}>
         <span>Was this answer helpful?</span>

@@ -65,11 +65,6 @@
   color: var(--surface-text-secondary);
 }
 
-.input:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
 .input::-webkit-search-decoration,
 .input::-webkit-search-cancel-button {
   -webkit-appearance: none;
@@ -100,26 +95,7 @@
   transform: scale(0.92);
 }
 
-.spinner {
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 2px solid var(--surface-outline);
-  border-top-color: var(--brand-joy-blue);
-  animation: search-spin 700ms linear infinite;
-}
-
-@keyframes search-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .spinner {
-    animation: none;
-    border-top-color: var(--surface-outline);
-    background: var(--brand-joy-blue-bg);
-  }
+.clearIdle {
+  visibility: hidden;
+  pointer-events: none;
 }
