@@ -1,0 +1,47 @@
+@font-face {
+  font-family: "AnkoModerat";
+  src: url("/fonts/AnkoModerat-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AnkoModerat";
+  src: url("/fonts/AnkoModerat-LightItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AnkoModerat";
+  src: url("/fonts/AnkoModerat-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AnkoModerat";
+  src: url("/fonts/AnkoModerat-RegularItalic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AnkoModerat";
+  src: url("/fonts/AnkoModerat-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AnkoModerat";
+  src: url("/fonts/AnkoModerat-BoldItalic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}

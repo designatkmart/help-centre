@@ -1,0 +1,125 @@
+.form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: var(--search-max-width);
+  min-height: 52px;
+  padding: 8px 16px;
+  background: var(--surface-container);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 1px 2px rgba(19, 20, 22, 0.06);
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+.form:focus-within {
+  box-shadow: 0 0 0 2px var(--brand-joy-blue);
+}
+
+.iconStack {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.searchGlyph {
+  position: absolute;
+  inset: 3px;
+  width: 18px;
+  height: 18px;
+}
+
+.sparkleA,
+.sparkleB {
+  position: absolute;
+  filter: none;
+}
+
+.sparkleA {
+  top: 1px;
+  right: 1px;
+  width: 8px;
+  height: 8px;
+}
+
+.sparkleB {
+  top: 10px;
+  right: -1px;
+  width: 5px;
+  height: 5px;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--surface-text-primary);
+  font-size: var(--font-size-body-medium);
+  line-height: var(--line-height-body-medium);
+}
+
+.input::placeholder {
+  color: var(--surface-text-secondary);
+}
+
+.input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.input::-webkit-search-decoration,
+.input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+/* Mirrors the DS `close` component: 24x24 frame with the 14x14 vector inset. */
+.clear {
+  display: grid;
+  place-items: center;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+  flex-shrink: 0;
+  border-radius: 50%;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.clearGlyph {
+  width: 14px;
+  height: 14px;
+}
+
+.clear:hover {
+  background: var(--brand-joy-blue-bg);
+}
+
+.clear:active {
+  background: var(--brand-joy-blue-bg);
+  transform: scale(0.92);
+}
+
+.spinner {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--surface-outline);
+  border-top-color: var(--brand-joy-blue);
+  animation: search-spin 700ms linear infinite;
+}
+
+@keyframes search-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+    border-top-color: var(--surface-outline);
+    background: var(--brand-joy-blue-bg);
+  }
+}

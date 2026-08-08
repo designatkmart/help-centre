@@ -1,0 +1,340 @@
+.header {
+  background: var(--color-white);
+}
+
+/* ---------- shared ---------- */
+
+.box10,
+.box16,
+.box24 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.box10 {
+  width: 10px;
+  height: 10px;
+}
+
+.box16 {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.box24 {
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+}
+
+.logoLink {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+}
+
+/* The Kmart mark is exported at an exact 75.16 x 24 ratio; pin both dimensions
+   and keep object-fit: contain so the vector can never be stretched to its
+   container regardless of preserveAspectRatio. */
+.logoCompact,
+.logoDesktop {
+  display: block;
+  object-fit: contain;
+}
+
+.logoCompact {
+  width: 75px;
+  height: 23.91px;
+}
+
+.logoDesktop {
+  width: 123px;
+  height: 39px;
+}
+
+.iconButton {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+}
+
+.utilityIcons {
+  display: flex;
+  flex: none;
+  align-items: center;
+}
+
+/* DS "search" frame (24x24) with the magnifier inset 12.5% and the two Joy
+   sparkles positioned from the design's own percentage insets. */
+.searchIcon {
+  position: relative;
+  flex: none;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+}
+
+.searchGlyph {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 18px;
+  height: 18px;
+}
+
+.searchSparkleA {
+  position: absolute;
+  left: 10.04px;
+  top: 2.04px;
+  width: 9.23px;
+  height: 9.25px;
+}
+
+.searchSparkleB {
+  position: absolute;
+  left: 17.4px;
+  top: 9.41px;
+  width: 3.21px;
+  height: 3.21px;
+}
+
+.searchField {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-pill);
+  background: var(--surface-lowest);
+}
+
+.searchInput {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  background: none;
+  color: var(--surface-text-primary);
+  font-size: var(--font-size-body-medium);
+  line-height: var(--line-height-body-medium);
+  text-overflow: ellipsis;
+}
+
+.searchInput::placeholder {
+  color: var(--color-grey-400);
+  opacity: 1;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.searchField:focus-within {
+  outline: 2px solid var(--brand-joy-blue);
+  outline-offset: 2px;
+}
+
+.askJoy {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-sm);
+  height: 37.71px;
+  padding-inline: var(--space-xl);
+  border-radius: var(--radius-pill);
+  background: var(--joy-button-gradient);
+  color: var(--color-white);
+  font-size: var(--font-size-body-medium);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.localisation {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-lg);
+  height: 36px;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  background: var(--secondary);
+  color: var(--color-white);
+}
+
+.localisationItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 0;
+}
+
+.localisationValue {
+  overflow: hidden;
+  font-size: var(--font-size-body-medium);
+  line-height: var(--line-height-body-medium);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.desktop {
+  display: none;
+}
+
+/* ---------- mobile / tablet: Header (Mobile) - Vertex ---------- */
+
+/* 434:7227 — menu, logo, flexible spacer, utility icons */
+.compactNavRow {
+  display: flex;
+  align-items: center;
+  padding-block: var(--space-sm);
+  background: var(--color-white);
+}
+
+.compactSpacer {
+  flex: 1 1 auto;
+  min-width: var(--space-md);
+  height: var(--size-icon-md);
+}
+
+/* 434:7233 — AI search field + Ask Joy */
+.compactSearchRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+  background: var(--color-white);
+}
+
+.searchFieldCompact {
+  height: 37.71px;
+}
+
+.askJoyCompact {
+  padding-inline: var(--space-lg);
+}
+
+/* 434:7245 — full-width localisation pill */
+.compactLocalisationRow {
+  display: flex;
+  padding: var(--space-sm) var(--space-md) var(--space-md);
+  background: var(--color-white);
+}
+
+.localisationCompact {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ---------- desktop ---------- */
+
+.desktopInner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.searchRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding-block: var(--space-md);
+}
+
+.searchRow .searchField {
+  height: 44px;
+}
+
+.navRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  height: 44px;
+}
+
+.navScrollArea {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  align-items: center;
+}
+
+.navList {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.navList::-webkit-scrollbar {
+  display: none;
+}
+
+.navItem {
+  flex: none;
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  color: var(--surface-text-primary);
+  font-size: var(--font-size-body-medium);
+  line-height: var(--line-height-body-medium);
+  white-space: nowrap;
+  transition: background-color 120ms ease;
+}
+
+.navItem:hover {
+  background: var(--surface-lowest);
+}
+
+.target {
+  color: var(--color-target-red);
+}
+
+.officeworks {
+  color: var(--color-officeworks-blue);
+}
+
+.navScrollButton {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
+  padding: var(--space-md);
+  border-radius: var(--radius-pill);
+  background: var(--surface-lowest);
+}
+
+@media (min-width: 768px) {
+  .compactNavRow {
+    padding-inline: var(--space-md);
+  }
+
+  .compactSearchRow {
+    padding-inline: var(--space-xl);
+  }
+
+  .compactLocalisationRow {
+    padding-inline: var(--space-xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .compact {
+    display: none;
+  }
+
+  .desktop {
+    display: block;
+  }
+}

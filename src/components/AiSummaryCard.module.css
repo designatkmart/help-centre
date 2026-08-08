@@ -1,0 +1,113 @@
+.card {
+  width: 100%;
+  max-width: 720px;
+  padding: 16px;
+  background: var(--surface-container);
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 12px rgba(37, 55, 70, 0.08);
+  animation: summary-in 320ms ease;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: var(--font-size-title-medium);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--surface-text-primary);
+}
+
+.badge {
+  margin-left: auto;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--brand-joy-blue-bg);
+  color: var(--states-primary-hover);
+  font-size: var(--font-size-caption);
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.body {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.body p {
+  margin: 0;
+  font-size: var(--font-size-body-medium);
+  line-height: 1.45;
+  color: var(--surface-text-primary);
+}
+
+.joyCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1.5px solid var(--brand-joy-blue);
+  border-radius: var(--radius-pill);
+  color: var(--states-primary-hover);
+  font-size: var(--font-size-body-medium);
+  background: white;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.joyCta:hover {
+  background: var(--brand-joy-blue-bg);
+}
+
+.joyCta:active {
+  transform: scale(0.98);
+}
+
+.feedback {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  font-size: var(--font-size-caption);
+  line-height: 16px;
+  color: var(--surface-text-secondary);
+}
+
+.feedbackActions {
+  display: flex;
+  gap: 8px;
+}
+
+.feedbackActions button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  transition: background 160ms ease;
+}
+
+.feedbackActions button:hover,
+.feedbackActive {
+  background: var(--brand-joy-blue-bg);
+}
+
+.feedbackIcon {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+}
+
+/* Thumb glyphs are exported with preserveAspectRatio="none", so they need the
+   vector's own dimensions rather than the 16px slot to avoid stretching. */
+.feedbackActions img {
+  width: 14.6667px;
+  height: 13.3333px;
+}

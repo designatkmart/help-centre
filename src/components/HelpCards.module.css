@@ -1,0 +1,62 @@
+.section {
+  width: 100%;
+}
+
+.heading {
+  margin: 0 0 16px;
+  font-size: var(--font-size-title-large);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-primary-dark);
+}
+
+/* Mobile/tablet: one horizontally scrolling row of landscape Content Cards. */
+.scroller {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-xl);
+  margin: 0 -16px;
+  padding: 6px 16px 8px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline-start: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.item {
+  display: flex;
+  flex: 0 0 var(--content-card-min-width);
+  scroll-snap-align: start;
+}
+
+.card {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .scroller {
+    margin-inline: -24px;
+    padding-inline: 24px;
+    scroll-padding-inline-start: 24px;
+  }
+
+  .item {
+    flex-basis: 300px;
+  }
+}
+
+/* Desktop: 3-up grid, matching the "3 cards" Content Card Group layout. */
+@media (min-width: 1024px) {
+  .scroller {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-inline: 0;
+    padding-inline: 0;
+    overflow: visible;
+  }
+
+  .item {
+    flex-basis: auto;
+  }
+}

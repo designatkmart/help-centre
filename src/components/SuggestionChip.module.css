@@ -1,0 +1,45 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  padding: 8px 16px;
+  background: var(--surface-container);
+  border: 1.5px solid var(--brand-joy-blue);
+  border-radius: var(--radius-pill);
+  color: var(--states-primary-hover);
+  font-size: var(--font-size-body-medium);
+  line-height: var(--line-height-body-medium);
+  text-align: left;
+  transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.chip img {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+}
+
+.chip span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.chip:hover {
+  background: var(--brand-joy-blue-bg);
+}
+
+.chip:active,
+.pressed {
+  animation: chip-press 180ms ease;
+}
+
+@media (min-width: 768px) {
+  .chip {
+    white-space: nowrap;
+  }
+
+  .chip span {
+    overflow-wrap: normal;
+  }
+}

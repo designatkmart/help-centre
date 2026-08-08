@@ -1,0 +1,126 @@
+:root {
+  /* Brand — 1 Kmart Library / Public Facing */
+  --color-blue-200: #0063ae;
+  --color-charcoal-300: #253746;
+  --color-dark-blue-100: #253745;
+  --color-primary-dark: #222222;
+  --color-grey-100: #f4f4f4;
+  --color-grey-300: #b1b3b3;
+  --color-dark-grey: #4b4b59;
+  --color-white: #ffffff;
+
+  /* Surface / on-surface */
+  --surface-container: #ffffff;
+  --surface-lowest: #f4f5f6;
+  --surface-text-primary: #131416;
+  --surface-text-secondary: #5e656f;
+  --surface-outline: #cdd1d5;
+  --on-surface: #131416;
+
+  /* Partner brands in the global navigation */
+  --color-target-red: #ba0000;
+  --color-officeworks-blue: #001288;
+
+  /* Joy / AI */
+  --brand-joy-blue: #2288e2;
+  --brand-joy-purple: #6d4ea2;
+  --brand-joy-blue-strong: #0c7ed8;
+  --brand-joy-purple-strong: #822bb5;
+  --brand-joy-blue-bg: #e4f0fb;
+  --brand-joy-purple-bg: #d4cfe7;
+  --primary-background: #e4f0fb;
+  --states-primary-hover: #12538c;
+  --secondary: #1a374a;
+
+  /* Typography */
+  --font-family: "AnkoModerat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-size-headline-small: 24px;
+  --font-size-title-large: 20px;
+  --font-size-title-medium: 16px;
+  --font-size-body-large: 16px;
+  --font-size-body-medium: 14px;
+  --font-size-caption: 12px;
+  --line-height-body-medium: 20px;
+  --line-height-body-large: 24px;
+  --line-height-caption: 18px;
+  --letter-spacing-caption: 0.048px;
+  --letter-spacing-body-medium: 0.028px;
+
+  /* Spacing / shape */
+  --space-xs: 2px;
+  --space-sm: 4px;
+  --space-md: 8px;
+  --space-lg: 12px;
+  --space-xl: 16px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 200px;
+  --size-icon-sm: 16px;
+  --size-icon-md: 24px;
+  --size-icon-lg: 32px;
+
+  /* Layout */
+  --page-max: 1120px;
+  --header-utility: var(--color-charcoal-300);
+  --joy-gradient: linear-gradient(
+    265deg,
+    var(--brand-joy-blue-bg) 1%,
+    var(--brand-joy-purple-bg) 97%
+  );
+  --joy-button-gradient: linear-gradient(
+    217.78deg,
+    var(--brand-joy-blue-strong) 22.486%,
+    var(--brand-joy-purple-strong) 77.197%
+  );
+
+  /* Loading placeholders */
+  --surface-skeleton: #e6e9ec;
+  --surface-skeleton-highlight: #f4f6f8;
+
+  /* Search / suggestion chips share this so they stay edge-aligned */
+  --search-max-width: 640px;
+
+  /* Grid Tile — 1 Kmart Library / Grid Tile (Image Ratio 1:1) */
+  --grid-tile-scrim: rgba(19, 20, 22, 0.7);
+  --grid-tile-overlay: linear-gradient(
+    180deg,
+    rgba(19, 20, 22, 0) 0%,
+    var(--grid-tile-scrim) 40%
+  );
+  --grid-tile-on-image: #ffffff;
+  --states-focus: #009adb;
+}
+
+/* Content Card — 1 Kmart Library / Content Card (Orientation=Landscape) */
+:root {
+  --space-sm: 4px;
+  --space-lg: 12px;
+  --space-2xl: 24px;
+  --surface-background: #f4f5f6;
+  --content-card-min-width: 260px;
+  --content-card-background: var(--color-grey-100);
+}
+
+/* Header (Mobile) - Vertex — 1 Kmart Library / Greyscale */
+:root {
+  --color-grey-400: #63666a;
+}
+
+/* Global footer — 1 Kmart Library / Tile Lockup + Links & Lists + Checkout Pieces */
+:root {
+  --color-grey-200: #e7e7e7;
+  --footer-max: 1440px;
+  --footer-gutter: 40px;
+  --footer-section-gap: 15px;
+  --footer-ribbon-height: 44px;
+  --footer-scrim: linear-gradient(
+    180deg,
+    rgba(34, 34, 34, 0.15) 0%,
+    rgba(34, 34, 34, 0) 100%
+  );
+}
+
+/* Content Card media — matches the flat plate the help illustrations sit on. */
+:root {
+  --content-card-media-plate: #ddecfd;
+}
