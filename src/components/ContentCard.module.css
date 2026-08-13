@@ -28,8 +28,8 @@
 /* The artwork is an illustration on a flat plate, so it is inset rather than
    full-bleed: the panel repeats the plate colour to keep the edges seamless. */
 .mediaImage {
-  width: 85%;
-  height: 85%;
+  width: 70%;
+  height: 70%;
   object-fit: contain;
   transition: transform 240ms ease;
 }

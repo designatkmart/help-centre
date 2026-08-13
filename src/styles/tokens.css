@@ -121,9 +121,10 @@
   );
 }
 
-/* Content Card media — matches the flat plate the help illustrations sit on. */
+/* Content Card media — same tint as the topic tile artwork so the help
+   illustrations (transparent SVGs) read as one set across both components. */
 :root {
-  --content-card-media-plate: #ddecfd;
+  --content-card-media-plate: #e8f1f8;
 }
 
 /* AI answer thread — question, answer card and follow-up field share a column. */

@@ -1,6 +1,6 @@
-import joyImage from "../assets/help/help-joy.jpg";
-import inquiryImage from "../assets/help/help-inquiry.jpg";
-import callImage from "../assets/help/help-call.jpg";
+import joyImage from "../assets/help/help-joy.svg";
+import inquiryImage from "../assets/help/help-inquiry.svg";
+import callImage from "../assets/help/help-call.svg";
 import { ContentCard } from "./ContentCard";
 import cardStyles from "./ContentCard.module.css";
 import styles from "./HelpCards.module.css";
